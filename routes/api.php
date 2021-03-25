@@ -1,6 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
+
+use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('register', [RegisterController::class, 'register']);
+Route::post('login', [RegisterController::class, 'login']);
+
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product:id}', [ProductController::class, 'show']);
+Route::get('/products/slug/{product:slug}', [ProductController::class, 'show']);
+
+Route::post('/cart', [CartController::class, 'addToCart']);
+Route::put('/cart', [CartController::class, 'updateCartItem']);
+Route::delete('/cart/{id}', [CartController::class, 'removeFromCart']);
+
+Route::post('/orders', [OrderController::class, 'create']);
+
+
+Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'index']);

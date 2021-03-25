@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') . '?t=' . microtime(true) }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <title>@section('title'){{ config('app.name', 'Laravel') }}@show</title>
+    <title>@section('title'){{ config('app.name', 'House test') }}@show</title>
 </head>
 <body>
 <div id="app">
